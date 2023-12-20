@@ -1,0 +1,104 @@
+@charset 'utf-8';
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+// ul,
+// ol,
+// li {
+// 	list-style: none;
+// }
+// a {
+// 	text-decoration: none;
+// }
+
+body {
+	min-height: 100vh;
+	background: linear-gradient(45deg, #b3a0fd, #006aff);
+	overflow: hidden;
+}
+$size: 300px;
+$toggle: 80px;
+$a: 60px;
+$iconB: 40px;
+$iconS: 20px;
+
+.menu {
+	position: absolute;
+	top: -80px;
+	left: -80px;
+	width: $size;
+	height: $size;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 1s;
+	li {
+		position: absolute;
+		list-style: none;
+		left: 0;
+		transform-origin: $size/2;
+		opacity: 0;
+		transition: all 0.5s;
+		transform: rotate(0deg) translateX($size/2);
+		transition-delay: calc(0.1s * var(--i));
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: $a;
+			height: $a;
+			background-color: #fff;
+			border-radius: 50%;
+			box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+			color: #111;
+			font-size: $iconS;
+			position: relative;
+			transform: rotate(calc(360deg / -8 * var(--i)));
+			span {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-weight: bold;
+				font-size: 11px;
+				color: #fff;
+				transition: all 0.5s;
+				opacity: 0;
+			}
+			&:hover {
+				span {
+					opacity: 1;
+					margin-top: $a * 0.7;
+				}
+			}
+		}
+	}
+	.toggle {
+		position: absolute;
+		width: $toggle;
+		height: $toggle;
+		background-color: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		z-index: 5;
+		cursor: pointer;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+		font-size: $iconB;
+		transition: transform 1.2s;
+	}
+	&.active {
+		top: 50px;
+		left: 50px;
+		.toggle {
+			transform: rotate(315deg);
+		}
+		li {
+			transform: rotate(calc(360deg / 8 * var(--i)));
+			opacity: 1;
+		}
+	}
+}
